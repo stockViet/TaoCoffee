@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Quản Lý Táo Coffee</title>
+<title>Táo Coffee · Quản lý V3</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Táo Coffee">
@@ -28,54 +28,87 @@ input[type=date]{font-size:9px;padding:2px}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:6px}.empty{color:#929892;text-align:center;padding:16px}
 @media(max-width:600px){.wrap{padding:10px}.brand{font-size:22px}.card{padding:10px}.metrics{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.filters .btn{grid-column:1/-1}.section{padding:9px}.grid3{gap:4px}.att1{gap:4px}.att2{gap:4px}.btn{font-size:11px;padding:0 8px}}
  .editoverlay[hidden]{display:none!important}.editoverlay{position:fixed;inset:0;background:#0008;z-index:100;display:flex;align-items:center;justify-content:center;padding:15px}.editbox{background:#fff;border-radius:18px;padding:18px;width:min(100%,440px);max-height:90vh;overflow:auto}.editfields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.editfield{font-size:12px}.editfield input,.editfield select{display:block;margin-top:5px;font-size:15px;height:42px}.editactions{display:flex;gap:8px}.editactions button{flex:1}.cancel{background:#e9eee6}.table button{border:1px solid #c9dfb4;background:#f2fae9;border-radius:8px;padding:7px 9px;font-weight:800;white-space:nowrap}
- </style>
+ 
+/* Tao Coffee mobile-first: khong cuon ngang, khong zoom khi nhap tren iPhone */
+html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body,.wrap,.page,.card,.section{max-width:100%;min-width:0}
+body{overflow-x:hidden}
+button{cursor:pointer;touch-action:manipulation}
+@media(max-width:600px){
+ .wrap{padding:8px}.brand{font-size:19px;text-align:center;margin:5px 0 9px}
+ .card{padding:10px;border-radius:14px}.title{font-size:17px}
+ .nav{grid-template-columns:105px minmax(0,1fr)}
+ .nav button,.nav select{font-size:13px}
+ .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .grid2{grid-template-columns:minmax(0,.8fr) minmax(0,1.7fr)}
+ label{font-size:11px}
+ input,select,textarea,.editfield input,.editfield select{font-size:16px!important;max-width:100%;min-width:0}
+ input[type=date]{font-size:13px!important;padding:2px 3px}
+ .att1{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .att2{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .att2 .pay,.att2 .btn{height:42px}.att2 .btn{font-size:14px}
+ .metrics{gap:6px}.metric{min-width:0;padding:8px 7px}.metric b{font-size:clamp(13px,3.8vw,17px);overflow-wrap:anywhere}
+ .metric small{font-size:10px;gap:3px;flex-wrap:wrap}
+ .total{gap:6px}.total strong{font-size:16px;overflow-wrap:anywhere;text-align:right}
+ .table{overflow:visible;border:0;margin-top:8px}
+ .table table,.table tbody{display:block;width:100%;min-width:0!important}
+ .table thead{display:none}
+ .table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 10px;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px;background:#fff;width:100%}
+ .table td{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:2px 0;border:0;text-align:left!important;overflow-wrap:anywhere;font-size:13px}
+ .table td:before{content:attr(data-label);display:block;color:#6c7667;font-size:10px;font-weight:800;margin-bottom:3px}
+ .table td:last-child:has(button){grid-column:1/-1;display:flex;flex-direction:row;gap:8px;align-items:center}
+ .table td:last-child:has(button):before{display:none}
+ .table button{flex:1;min-height:40px;font-size:13px}
+ .table td.empty{grid-column:1/-1;display:block;text-align:center!important}
+ .table td.empty:before{display:none}
+ .editoverlay{padding:10px}.editbox{max-height:88dvh;padding:13px}.editfields{gap:8px}
+}
+
+/* Giao diện một trang tối ưu iPhone */
+html{scroll-behavior:smooth}body{background:#f5f7f3} .wrap{max-width:680px;padding:14px 12px 32px}.topbar{display:flex;justify-content:space-between;align-items:center;margin:4px 0 16px}.brandmark{display:flex;align-items:center;gap:10px}.apple{width:43px;height:43px;border-radius:14px;background:#e7f6d4;display:grid;place-items:center;font-size:25px}.brand{font-size:20px;line-height:1.05;margin:0;letter-spacing:-.5px}.tagline{font-size:9px;font-weight:850;letter-spacing:1.6px;color:#77916b;margin-top:4px}.status{font-size:10px;font-weight:800;color:#518728;background:#eaf7df;border-radius:99px;padding:8px}.card{border-radius:19px;padding:15px;box-shadow:0 5px 20px #223c1810;margin-bottom:12px}.rowtitle{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:1.2px;color:#68a82a}h1,h2{margin:4px 0 0;font-size:19px;letter-spacing:-.5px}.badge{font-size:10px;background:#f2f7ec;border-radius:99px;padding:7px 10px;color:#55872d;font-weight:850}.quick button{font-size:12px;height:35px;padding:0 14px}.filters{grid-template-columns:1fr 1fr auto;gap:7px;margin:8px 0 13px}.filters .btn{grid-column:auto}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{padding:12px;border-radius:13px;background:#f8faf6}.metric small{font-size:10px;letter-spacing:.3px}.metric b{font-size:clamp(15px,4vw,21px);overflow-wrap:anywhere}.metric.primary{background:#e8f8d7;border-color:#d0eeb1}.metric.primary b{color:#427e17}.metric.profit{background:#eff6ff;border-color:#dce9ff}.metric.profit b{color:#2465a0}.costs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.costs>div{border:1px solid #e7ebe3;border-radius:11px;padding:9px 10px;min-width:0}.costs small{display:block;color:#6c7767;font-size:10px;font-weight:750}.costs em{font-style:normal;color:#6c9d3d}.costs strong{display:block;font-size:13px;margin-top:4px;overflow-wrap:anywhere}.entry{border:1px solid #e4eadf;border-radius:13px;margin:8px 0;background:white;overflow:hidden}.entry summary{display:flex;align-items:center;gap:10px;padding:11px;list-style:none;cursor:pointer}.entry summary::-webkit-details-marker,.report summary::-webkit-details-marker{display:none}.entryicon{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;font-size:22px;font-weight:900;flex-shrink:0}.green{background:#e5f6d8;color:#3b8921}.amber{background:#fff0d9;color:#c77d14}.blue{background:#e7f0ff;color:#4b7cb9}.entry summary b{display:block;font-size:13px}.entry summary small{display:block;font-size:10px;color:#859080;margin-top:4px}.chevron{margin-left:auto;color:#819079;font-size:22px}.entry[open] .chevron{transform:rotate(180deg)}.entrybody{padding:12px;border-top:1px solid #edf0ea}.entrybody label{font-size:11px}.entrybody input,.entrybody select{height:43px;font-size:16px;padding:6px 9px}.entrybody input[type=date]{font-size:13px}.grid3{grid-template-columns:1fr 1fr;gap:8px}.grid3 label:first-child{grid-column:1/-1}.grid2{grid-template-columns:1fr 1fr;gap:8px}.att1{grid-template-columns:1fr 1fr;gap:8px}.att2{grid-template-columns:1fr 1fr;gap:8px}.att2 .pay{height:43px}.att2 .btn{height:43px}.btn{min-height:42px;font-size:13px}.save{margin-top:10px}.total strong{font-size:16px}.report summary{display:flex;justify-content:space-between;list-style:none;font-weight:900;font-size:14px;cursor:pointer}.report[open] summary{margin-bottom:12px}.table{overflow:visible;border:0;margin-top:8px}.table table{min-width:0;width:100%;display:block}.table thead{display:none}.table tbody{display:grid;gap:8px}.table tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;border:1px solid #e7ebe3;border-radius:12px;padding:11px;min-width:0}.table td{display:block;border:0;padding:0;min-width:0;text-align:left!important;font-size:12px;overflow-wrap:anywhere}.table td:before{content:attr(data-label);display:block;font-size:9px;color:#7b8775;font-weight:800;margin-bottom:3px}.table td:last-child{grid-column:1/-1;display:flex;gap:8px;align-items:center}.table td:last-child:before{display:none}.table td button{border:1px solid #dbe6d3;background:#f1f8ea;border-radius:9px;min-height:36px;padding:0 14px;color:#477c26;font-weight:850;font-size:12px}.table td button:last-child{background:#fff5f3;color:#b25c4b;border-color:#f3e3de}.table td.empty{grid-column:1/-1;text-align:center!important}.table td.empty:before{display:none}.summary{gap:8px}.summary .total{display:block}.summary .total strong{display:block;margin-top:5px}.editoverlay{z-index:1000}footer{text-align:center;font-size:11px;color:#9ba796;padding:8px} @media(max-width:390px){.status{font-size:9px;padding:7px}.brand{font-size:18px}.wrap{padding:10px}.card{padding:12px}.filters{grid-template-columns:1fr 1fr}.filters .btn{grid-column:1/-1}}
+
+/* Táo Coffee • giao diện quản trị tinh gọn */
+:root{--lime:#b3db7d;--deep:#315b31;--soft:#f0f6eb;--line:#e5e9e3;--muted:#788178;--ink:#202922}
+html,body{overflow-x:hidden}body{background:#f5f7f5;color:#202922}
+.wrap{max-width:520px;padding:14px 14px 105px;margin:auto}
+.topbar{margin:4px 0 18px}.apple{background:#e8f1e5;border:1px solid #d7e8d0;border-radius:13px;width:42px;height:42px;font-size:22px}
+.brand{font-size:19px;letter-spacing:.15px}.tagline{font-size:9px;color:#899489;letter-spacing:1.4px}.status{background:#e9f3e7;color:#527b52;padding:8px 10px;font-size:10px}
+.card{border:1px solid #e7ebe6;box-shadow:0 4px 16px #182d1708;border-radius:17px;padding:16px;margin-bottom:12px}
+.tabpane{display:none}.tabpane.is-visible{display:block}
+.eyebrow{color:#668d65;font-size:10px;letter-spacing:1.4px}h1,h2{font-size:19px;letter-spacing:-.4px}.badge{background:#f2f5f0;color:#6b7b69}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}.quick button{height:38px;border-radius:10px;background:#f6f8f5;border:1px solid #e1e8df;color:#4d5f4c;font-size:13px}
+.filters{grid-template-columns:1fr 1fr;gap:8px;margin:0 0 13px}.filters label{font-size:11px}.filters input{height:40px;font-size:16px!important}.filters .btn{grid-column:1/-1;height:38px;background:#eaf1e6;color:#385a36}
+.metrics{gap:9px}.metric{background:#fafbfa;border-color:#edf0ec;border-radius:13px;padding:14px 11px;min-height:85px}.metric.primary{background:#315b39;border-color:#315b39}.metric.primary small,.metric.primary b{color:#fff}.metric.profit{background:#eaf2e6;border-color:#eaf2e6}.metric.profit b{color:#315b39}.metric small{font-size:10px;font-weight:800;letter-spacing:.5px}.metric b{font-size:clamp(16px,4.5vw,23px);letter-spacing:-.6px;margin-top:10px;white-space:normal}
+.costs{gap:7px;margin-top:11px}.costs>div{background:#fff;border-color:#e9ede8;padding:10px}.costs small{font-size:11px}.costs strong{font-size:14px;margin-top:7px}
+.homeactions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:15px}.homeactions button{background:#f0f5ed;border:1px solid #e2ebdc;color:#315a36;border-radius:12px;padding:10px 3px;font-size:11px;font-weight:800;min-height:65px}.homeactions span{display:block;font-size:22px;line-height:24px;margin-bottom:5px}.homeledger{width:100%;height:44px;margin-top:9px;border-radius:11px;background:white;border:1px solid #e4eae2;color:#455846;font-weight:750;font-size:12px;text-align:left;padding:0 12px}.homeledger span{float:right;font-size:18px}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:8px max(10px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));background:#ffffffee;backdrop-filter:blur(14px);border-top:1px solid #e4e9e3;box-shadow:0 -4px 20px #1627160b}
+.bottomnav button{border:0;background:transparent;color:#788378;font-size:10px;font-weight:750;min-height:48px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;white-space:nowrap}.bottomnav button span{font-size:22px;line-height:23px}.bottomnav button.active{background:#e9f2e6;color:#2d6238}
+.entry{margin:10px 0}.entry summary{min-height:64px}.entrybody{padding:12px}.entrybody label{font-size:12px}.entrybody input,.entrybody select{font-size:16px!important;min-height:43px}.entrybody input[type=date]{font-size:16px!important}.grid3,.grid2,.att1,.att2{gap:9px}.table tr{border-radius:12px}.table td{font-size:13px}.table td button{min-height:42px}.report.card{padding:15px}.report summary{min-height:30px;align-items:center}
+footer{display:none}
+@media(min-width:700px){.wrap{max-width:560px}.bottomnav{left:50%;right:auto;transform:translateX(-50%);width:560px;border-radius:16px 16px 0 0}}
+
+/* Biểu đồ quản trị */
+.analytics{padding:14px}.charthead{display:flex;justify-content:space-between;gap:8px;align-items:center}.charthead h2{font-size:16px;margin:0}.chartsub{font-size:11px;color:#71806f;margin:6px 0 12px}.trendbox{width:100%;overflow:hidden}.trendbox svg{width:100%;height:auto;display:block}.chartlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#647265;margin-top:8px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#39864e}.dot.orange{background:#e9a35c}.insight{background:#f2f7ee;border-radius:11px;padding:10px 12px;font-size:12px;line-height:1.6;margin-top:11px}.barrow{display:grid;grid-template-columns:96px minmax(0,1fr) 48px;gap:7px;align-items:center;margin:11px 0;font-size:11px}.bartrack{height:9px;background:#eef1ec;border-radius:10px;overflow:hidden}.barfill{height:100%;background:#51855c;border-radius:10px}.barrow strong{text-align:right;font-size:11px}.mini{font-size:10px;color:#829083}.emptychart{padding:24px 10px;text-align:center;color:#879187;font-size:12px}.reportsummary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.reportsummary>div{background:#f5f8f3;padding:11px;border-radius:11px}.reportsummary small{display:block;font-size:10px;color:#6d7c6b}.reportsummary b{font-size:17px;display:block;margin-top:5px}
+</style>
 </head>
 <body>
 <div class="wrap">
-<div class="brand">QUẢN LÝ TÁO COFFEE</div>
-<div class="nav"><button onclick="showPage('home')">Tổng quan</button><select id="navSelect" onchange="if(this.value)showPage(this.value)"><option value="">Chọn chức năng…</option><option value="expense">Chi phí</option><option value="staff">Nhân viên</option><option value="payroll">Bảng lương</option><option value="ledger">Sổ thu chi</option></select></div>
-
-<section id="home" class="page on">
-<div class="card">
-<div class="title">Nhập số liệu hôm nay</div><div class="sub">Nhập nhanh tiền khách trả và các khoản chi trong ngày.</div>
-
-<div class="section"><h3>THU NHẬP / DOANH THU</h3>
-<div class="grid3"><label>Ngày<input id="saleDate" type="date"></label><label>Tiền mặt<input id="cash" class="money" inputmode="numeric" placeholder="0"></label><label>Chuyển khoản<input id="bank" class="money" inputmode="numeric" placeholder="0"></label></div>
-<div class="grid2"><label>Thu khác<input id="other" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="saleNote" placeholder="Ghi chú ngắn"></label></div>
-<div class="total"><span>Tổng thu</span><strong id="saleTotal">0đ</strong></div><button class="btn save" id="saveSale">Lưu doanh thu</button>
-</div>
-
-<div class="section"><h3>CHI PHÍ TRONG NGÀY</h3>
-<div class="grid3"><label>Ngày<input id="expDate" type="date"></label><label>Số tiền<input id="expAmount" class="money" inputmode="numeric" placeholder="0"></label><label>Loại chi<select id="expCat"><option>Nguyên vật liệu</option><option>Điện / nước / gas</option><option>Bao bì / cốc / túi</option><option>Vận chuyển</option><option>Thuê mặt bằng</option><option>Chi khác</option></select></label></div>
-<div class="grid2" style="grid-template-columns:1fr"><label>Ghi chú<input id="expNote" placeholder="VD: trà, sữa, topping"></label></div>
-<div class="total"><span>Khoản chi</span><strong id="expPreview">0đ</strong></div><button class="btn save" id="saveExpense">+ Lưu khoản chi</button>
-</div>
-</div>
-
-<div class="card"><div class="title">Chấm công nhân viên</div><div class="sub">Nhập công ngày • tự tính tiền ngay khi điền.</div>
-<div class="att1"><label>Ngày<input id="workDate" type="date"></label><label>Nhân viên<input id="empName" list="empNames" placeholder="Tên"><datalist id="empNames"></datalist></label><label>Giờ làm<input id="hours" type="number" inputmode="decimal" step=".25" placeholder="0"></label><label>Tăng ca<input id="otHours" type="number" inputmode="decimal" step=".25" placeholder="0"></label></div>
-<div class="att2"><label>Thưởng<input id="bonus" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="workNote" placeholder="Ghi chú"></label><div class="pay"><small>Công ngày</small><strong id="dayPay">0đ</strong></div><button class="btn" id="saveWork">Lưu công</button></div>
-<div class="formula" id="formula">Giờ làm × 18.000đ + tăng ca × 21.000đ + thưởng</div>
-</div>
-
-<div class="card"><div class="title">Thời gian xem</div><div class="quick"><button id="thisMonth">Tháng này</button><button id="todayOnly">Hôm nay</button></div>
-<div class="filters"><label>Từ ngày<input id="from" type="date"></label><label>Đến ngày<input id="to" type="date"></label><button class="btn" id="apply">Xem dữ liệu</button></div></div>
-
-<div class="metrics">
-<div class="metric"><small>DOANH THU</small><b id="mRevenue">0đ</b></div><div class="metric"><small>TIỀN MẶT</small><b id="mCash">0đ</b></div><div class="metric"><small>CHUYỂN KHOẢN</small><b id="mBank">0đ</b></div><div class="metric"><small>LỢI NHUẬN</small><b id="mProfit">0đ</b></div>
-<div class="metric"><small>NGUYÊN LIỆU <span class="pct" id="pMat">0%</span></small><b id="mMat">0đ</b></div><div class="metric"><small>NHÂN VIÊN <span class="pct" id="pStaff">0%</span></small><b id="mStaff">0đ</b></div><div class="metric"><small>ĐIỆN NƯỚC <span class="pct" id="pUtil">0%</span></small><b id="mUtil">0đ</b></div><div class="metric"><small>CHI KHÁC <span class="pct" id="pOther">0%</span></small><b id="mOther">0đ</b></div>
-</div>
-</section>
-
-<section id="expense" class="page"><div class="card"><div class="title">Chi phí</div><div class="sub">Các khoản chi trong khoảng thời gian đang xem.</div><div class="total"><span>TỔNG CHI PHÍ</span><strong id="expenseTotal">0đ</strong></div><div class="table"><table><thead><tr><th>Ngày</th><th>Loại</th><th>Ghi chú</th><th class="right">Số tiền</th><th></th></tr></thead><tbody id="expenseRows"></tbody></table></div></div></section>
-
-<section id="staff" class="page"><div class="card"><div class="title">Nhân viên & công</div><div class="summary"><div class="total"><span>Tổng giờ</span><strong id="staffHours">0h</strong></div><div class="total"><span>Tổng tiền công</span><strong id="staffTotal">0đ</strong></div></div><div class="table"><table><thead><tr><th>Ngày</th><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th class="right">Công ngày</th><th></th></tr></thead><tbody id="workRows"></tbody></table></div></div></section>
-
-<section id="payroll" class="page"><div class="card"><div class="title">Bảng lương</div><div class="sub">Tổng hợp theo khoảng thời gian đang xem.</div><div class="table"><table><thead><tr><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th class="right">Tổng lương</th></tr></thead><tbody id="payRows"></tbody></table></div></div></section>
-
-<section id="ledger" class="page"><div class="card"><div class="title">Sổ thu chi</div><div class="table"><table><thead><tr><th>Ngày</th><th>Nội dung</th><th class="right">Thu</th><th class="right">Chi</th><th>Thao tác</th></tr></thead><tbody id="ledgerRows"></tbody></table></div></div></section>
-</div>
-
+<header class="topbar"><div class="brandmark"><span class="apple">🍏</span><div><div class="brand">TÁO COFFEE</div><div class="tagline">QUẢN LÝ KINH DOANH</div></div></div><span class="status">● Quản lý</span></header>
+<section class="overview card tabpane is-visible" data-tab="home"><div class="rowtitle"><div><div class="eyebrow">TỔNG QUAN</div><h1>Hoạt động kinh doanh</h1></div><span class="badge">Báo cáo</span></div>
+<div class="quick"><button id="todayOnly">Hôm nay</button><button id="thisMonth">Tháng này</button></div>
+<div class="filters"><label>Từ ngày<input id="from" type="date"></label><label>Đến ngày<input id="to" type="date"></label><button class="btn" id="apply">Xem</button></div>
+<div class="metrics"><div class="metric primary"><small>DOANH THU</small><b id="mRevenue">0đ</b></div><div class="metric profit"><small>LỢI NHUẬN</small><b id="mProfit">0đ</b></div><div class="metric"><small>TIỀN MẶT</small><b id="mCash">0đ</b></div><div class="metric"><small>CHUYỂN KHOẢN</small><b id="mBank">0đ</b></div></div>
+<div class="costs"><div><small>Nguyên liệu <em id="pMat">0%</em></small><strong id="mMat">0đ</strong></div><div><small>Nhân viên <em id="pStaff">0%</em></small><strong id="mStaff">0đ</strong></div><div><small>Điện nước <em id="pUtil">0%</em></small><strong id="mUtil">0đ</strong></div><div><small>Chi khác <em id="pOther">0%</em></small><strong id="mOther">0đ</strong></div></div><div class="homeactions"><button onclick="switchTab('entry','saleEntry')"><span>＋</span>Ghi doanh thu</button><button onclick="switchTab('entry','expenseEntry')"><span>−</span>Ghi chi phí</button><button onclick="switchTab('entry','workEntry')"><span>◷</span>Chấm công</button></div><button class="homeledger" onclick="switchTab('ledger')">Xem & chỉnh sửa giao dịch <span>→</span></button></section>
+<section class="card tabpane" data-tab="entry"><div class="rowtitle"><div><div class="eyebrow">NHẬP LIỆU NHANH</div><h2>Thêm giao dịch</h2></div></div>
+<details class="entry" id="saleEntry"><summary><span class="entryicon green">＋</span><span><b>Thêm doanh thu</b><small>Tiền mặt · Chuyển khoản · Thu khác</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="grid3"><label>Ngày<input id="saleDate" type="date"></label><label>Tiền mặt<input id="cash" class="money" inputmode="numeric" placeholder="0"></label><label>Chuyển khoản<input id="bank" class="money" inputmode="numeric" placeholder="0"></label></div><div class="grid2"><label>Thu khác<input id="other" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="saleNote" placeholder="Ghi chú"></label></div><div class="total"><span>Tổng thu</span><strong id="saleTotal">0đ</strong></div><button class="btn save" id="saveSale">Lưu doanh thu</button></div></details>
+<details class="entry" id="expenseEntry"><summary><span class="entryicon amber">−</span><span><b>Thêm khoản chi</b><small>Nguyên liệu · Điện nước · Chi khác</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="grid3"><label>Ngày<input id="expDate" type="date"></label><label>Số tiền<input id="expAmount" class="money" inputmode="numeric" placeholder="0"></label><label>Loại chi<select id="expCat"><option>Nguyên vật liệu</option><option>Điện / nước / gas</option><option>Bao bì / cốc / túi</option><option>Vận chuyển</option><option>Thuê mặt bằng</option><option>Chi khác</option></select></label></div><label>Ghi chú<input id="expNote" placeholder="Nội dung chi"></label><div class="total"><span>Khoản chi</span><strong id="expPreview">0đ</strong></div><button class="btn save" id="saveExpense">Lưu khoản chi</button></div></details>
+<details class="entry" id="workEntry"><summary><span class="entryicon blue">◷</span><span><b>Chấm công nhân viên</b><small>Giờ làm · Tăng ca · Thưởng</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="att1"><label>Ngày<input id="workDate" type="date"></label><label>Nhân viên<input id="empName" list="empNames" placeholder="Tên"><datalist id="empNames"></datalist></label><label>Giờ làm<input id="hours" type="number" inputmode="decimal" step=".25" placeholder="0"></label><label>Tăng ca<input id="otHours" type="number" inputmode="decimal" step=".25" placeholder="0"></label></div><div class="att2"><label>Thưởng<input id="bonus" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="workNote" placeholder="Ghi chú"></label><div class="pay"><small>Công ngày</small><strong id="dayPay">0đ</strong></div><button class="btn" id="saveWork">Lưu công</button></div><div class="formula" id="formula">Giờ làm × 18.000đ + tăng ca × 21.000đ + thưởng</div></div></details></section>
+<section class="card tabpane" data-tab="ledger"><div class="rowtitle"><div><div class="eyebrow">TRA CỨU & CHỈNH SỬA</div><h2>Sổ thu chi</h2></div></div><div class="table"><table><thead><tr><th>Ngày</th><th>Nội dung</th><th>Thu</th><th>Chi</th><th>Thao tác</th></tr></thead><tbody id="ledgerRows"></tbody></table></div></section>
+<section class="card analytics tabpane" data-tab="reports"><div class="eyebrow">PHÂN TÍCH KINH DOANH</div><h2 style="margin-bottom:12px">Doanh thu & chi phí</h2><div class="reportsummary"><div><small>Tổng thu</small><b id="anRevenue">0đ</b></div><div><small>Tổng chi (gồm lương)</small><b id="anExpense">0đ</b></div></div><div class="charthead"><h2>Biến động từng ngày</h2></div><div class="chartsub">Đường xanh: doanh thu · Đường cam: chi phí (gồm lương)</div><div id="trendChart" class="trendbox"></div><div id="trendInsight" class="insight"></div><h2 style="font-size:16px;margin:22px 0 4px">Cơ cấu nguồn thu</h2><div class="chartsub">Tỷ trọng trên tổng doanh thu</div><div id="incomeMix"></div><h2 style="font-size:16px;margin:22px 0 4px">Phân bổ chi phí</h2><div class="chartsub">Tỷ trọng trên tổng chi, bao gồm tiền công nhân viên</div><div id="expenseMix"></div><div class="mini">Số liệu được tính từ các khoản đã nhập trong khoảng ngày đang chọn ở Tổng quan. Ngày chưa ghi thu được tính là 0đ.</div></section>
+<details class="report card tabpane" data-tab="reports"><summary>📋 Chi tiết chi phí <span>⌄</span></summary><div class="total"><span>Tổng chi phí</span><strong id="expenseTotal">0đ</strong></div><div class="table"><table><thead><tr><th>Ngày</th><th>Loại</th><th>Ghi chú</th><th>Số tiền</th><th>Thao tác</th></tr></thead><tbody id="expenseRows"></tbody></table></div></details>
+<details class="report card tabpane" data-tab="reports"><summary>👥 Công nhân viên <span>⌄</span></summary><div class="summary"><div class="total"><span>Tổng giờ</span><strong id="staffHours">0h</strong></div><div class="total"><span>Tổng công</span><strong id="staffTotal">0đ</strong></div></div><div class="table"><table><thead><tr><th>Ngày</th><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th>Công ngày</th><th>Thao tác</th></tr></thead><tbody id="workRows"></tbody></table></div></details>
+<details class="report card tabpane" data-tab="reports"><summary>💳 Bảng lương <span>⌄</span></summary><div class="table"><table><thead><tr><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th>Tổng lương</th></tr></thead><tbody id="payRows"></tbody></table></div></details>
+<footer>Táo Coffee · Dữ liệu lưu trên thiết bị này</footer><nav class="bottomnav" aria-label="Điều hướng"><button class="active" data-go="home"><span>▦</span>Tổng quan</button><button data-go="entry"><span>＋</span>Nhập liệu</button><button data-go="ledger"><span>≡</span>Sổ thu chi</button><button data-go="reports"><span>▥</span>Báo cáo</button></nav></div>
 <div id="editOverlay" class="editoverlay" hidden><div class="editbox" role="dialog" aria-modal="true" aria-labelledby="editTitle"><div class="title" id="editTitle">Chỉnh sửa</div><div id="editFields" class="editfields"></div><div class="editactions"><button class="btn cancel" onclick="closeEdit()">Hủy</button><button class="btn" onclick="saveEdit()">Lưu thay đổi</button></div></div></div>
 <script>
 const $=id=>document.getElementById(id);
@@ -102,6 +135,33 @@ function live(){
 document.addEventListener('input',e=>{if(e.target.classList.contains('money'))e.target.value=pretty(e.target.value);live()},true);
 document.addEventListener('change',live,true);
 
+
+function renderAnalytics(sales,expenses,works){
+ const sum=a=>a.reduce((v,x)=>v+x,0), r=sales.reduce((v,x)=>v+(+x.cash||0)+(+x.bank||0)+(+x.other||0),0),e=sum(expenses.map(x=>+x.amount||0))+sum(works.map(workPay));
+ $('anRevenue').textContent=money(r);$('anExpense').textContent=money(e);
+ const mix=(id,items,total)=>{$(id).innerHTML=total?items.filter(x=>x[1]>0).map(([name,val])=>{let pct=val/total*100;return `<div class="barrow"><span>${esc(name)}</span><div class="bartrack"><div class="barfill" style="width:${pct.toFixed(2)}%"></div></div><strong>${pct.toFixed(1)}%</strong></div><div class="mini" style="margin:-7px 0 9px 103px">${money(val)}</div>`}).join(''):'<div class="emptychart">Chưa có số liệu trong thời gian này</div>'};
+ mix('incomeMix',[['Tiền mặt',sum(sales.map(x=>+x.cash||0))],['Chuyển khoản',sum(sales.map(x=>+x.bank||0))],['Thu khác',sum(sales.map(x=>+x.other||0))]],r);
+ const categories={};expenses.forEach(x=>categories[x.cat]=(categories[x.cat]||0)+(+x.amount||0));categories['Nhân viên']=(categories['Nhân viên']||0)+sum(works.map(workPay));mix('expenseMix',Object.entries(categories).sort((a,b)=>b[1]-a[1]),e);
+ const start=$('from').value,end=$('to').value,day=86400000,dates=[];let a=Date.parse(start+'T12:00:00Z'),b=Date.parse(end+'T12:00:00Z');
+ if(!Number.isFinite(a)||!Number.isFinite(b)||b<a){$('trendChart').innerHTML='<div class="emptychart">Chọn khoảng ngày hợp lệ</div>';return}
+ const totalDays=Math.round((b-a)/day)+1;
+ // Giới hạn số ngày để biểu đồ trên điện thoại luôn phản hồi nhanh.
+ if(totalDays>366){$('trendChart').innerHTML='<div class="emptychart">Chọn tối đa 366 ngày để xem biểu đồ</div>';return}
+ const map=new Map();for(let t=a;t<=b;t+=day){let d=new Date(t).toISOString().slice(0,10);map.set(d,{date:d,rev:0,cost:0})}
+ sales.forEach(x=>{let v=map.get(x.date);if(v)v.rev+=(+x.cash||0)+(+x.bank||0)+(+x.other||0)});
+ expenses.forEach(x=>{let v=map.get(x.date);if(v)v.cost+=(+x.amount||0)});
+ works.forEach(x=>{let v=map.get(x.date);if(v)v.cost+=workPay(x)});
+ const arr=[...map.values()],max=Math.max(1,...arr.map(x=>Math.max(x.rev,x.cost))),w=340,h=178,left=12,right=12,top=12,bottom=27,iw=w-left-right,ih=h-top-bottom;
+ const xx=i=>left+(arr.length===1?iw/2:i*iw/(arr.length-1)),yy=v=>top+ih-(v/max)*ih;
+ const path=key=>arr.map((x,i)=>(i?'L':'M')+xx(i).toFixed(1)+' '+yy(x[key]).toFixed(1)).join(' ');
+ const labels=[0,Math.floor((arr.length-1)/2),arr.length-1].filter((v,i,ar)=>ar.indexOf(v)===i);
+ const fmt=d=>d.slice(8,10)+'/'+d.slice(5,7);
+ $('trendChart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Biểu đồ đường doanh thu và chi phí từng ngày"><line x1="${left}" y1="${top+ih}" x2="${w-right}" y2="${top+ih}" stroke="#dce6da"/>${[.25,.5,.75,1].map(f=>`<line x1="${left}" y1="${yy(max*f)}" x2="${w-right}" y2="${yy(max*f)}" stroke="#eef2ed" stroke-dasharray="3 4"/>`).join('')}<path d="${path('rev')}" fill="none" stroke="#39864e" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><path d="${path('cost')}" fill="none" stroke="#e9a35c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>${arr.length<=31?arr.map((x,i)=>`<circle cx="${xx(i)}" cy="${yy(x.rev)}" r="2.8" fill="#39864e"><title>${x.date}: thu ${money(x.rev)}</title></circle>`).join(''):''}${labels.map(i=>`<text x="${xx(i)}" y="${h-6}" font-size="10" text-anchor="middle" fill="#71806f">${fmt(arr[i].date)}</text>`).join('')}</svg>`;
+ if(!sales.length&&!expenses.length&&!works.length){$('trendInsight').textContent='Chưa có dữ liệu trong khoảng ngày đã chọn.';return}
+ const high=arr.reduce((p,x)=>x.rev>p.rev?x:p,arr[0]),low=arr.reduce((p,x)=>x.rev<p.rev?x:p,arr[0]);
+ $('trendInsight').innerHTML=`📈 <b>Thu cao nhất:</b> ${fmt(high.date)} · ${money(high.rev)}<br>📉 <b>Thu thấp nhất:</b> ${fmt(low.date)} · ${money(low.rev)}<br>💰 <b>Chi / Thu:</b> ${r?(e/r*100).toFixed(1)+'%':'Chưa có doanh thu'} · <b>Còn lại:</b> ${money(r-e)}`;
+}
+
 function render(){
  let sales=db.sales.filter(inRange),ex=db.expenses.filter(inRange),works=db.works.filter(inRange);
  let rev=sales.reduce((a,x)=>a+x.cash+x.bank+x.other,0),cash=sales.reduce((a,x)=>a+x.cash,0),bank=sales.reduce((a,x)=>a+x.bank,0);
@@ -115,6 +175,8 @@ function render(){
  $('payRows').innerHTML=Object.values(groups).map(g=>`<tr><td>${esc(g.name)}</td><td>${g.h}</td><td>${g.ot}</td><td>${money(g.b)}</td><td class="right">${money(g.total)}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có bảng lương</td></tr>';
   let ledger=[...sales.map(x=>({id:x.id,type:'sales',date:x.date,text:'Doanh thu'+(x.note?' · '+x.note:''),inc:x.cash+x.bank+x.other,out:0})),...ex.map(x=>({id:x.id,type:'expenses',date:x.date,text:x.cat+(x.note?' · '+x.note:''),inc:0,out:x.amount})),...works.map(x=>({id:x.id,type:'works',date:x.date,text:'Công nhân viên · '+(db.employees.find(e=>e.id===x.empId)?.name||''),inc:0,out:workPay(x)}))].sort((a,b)=>b.date.localeCompare(a.date));
   $('ledgerRows').innerHTML=ledger.map(x=>`<tr><td>${x.date}</td><td>${esc(x.text)}</td><td class="right">${x.inc?money(x.inc):'—'}</td><td class="right">${x.out?money(x.out):'—'}</td><td><button onclick="editEntry('${x.type}','${x.id}')">Sửa</button> <button onclick="deleteEntry('${x.type}','${x.id}')">Xóa</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có dữ liệu</td></tr>';
+ document.querySelectorAll('.table table').forEach(table=>{const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());table.querySelectorAll('tbody tr').forEach(row=>[...row.children].forEach((cell,i)=>{if(cell.tagName==='TD'&&!cell.classList.contains('empty'))cell.setAttribute('data-label',labels[i]||'')}))});
+ renderAnalytics(sales,ex,works);
  $('empNames').innerHTML=db.employees.map(e=>`<option value="${esc(e.name)}">`).join('');
 }
 function deleteEntry(type,id){
@@ -165,7 +227,7 @@ function saveEdit(){
  save();closeEdit();render();alert('Đã lưu chỉnh sửa thành công!');
 }
 
-function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');$('navSelect').value=id==='home'?'':id;render()}
+function showPage(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});render()}
 
 $('saveSale').onclick=()=>{let total=number($('cash').value)+number($('bank').value)+number($('other').value);if(!total)return alert('Hãy nhập doanh thu.');db.sales.push({id:uid(),date:$('saleDate').value,cash:number($('cash').value),bank:number($('bank').value),other:number($('other').value),note:$('saleNote').value.trim()});save();['cash','bank','other','saleNote'].forEach(id=>$(id).value='');live();render()};
 $('saveExpense').onclick=()=>{let amount=number($('expAmount').value);if(!amount)return alert('Hãy nhập số tiền chi.');db.expenses.push({id:uid(),date:$('expDate').value,amount,cat:$('expCat').value,note:$('expNote').value.trim()});save();$('expAmount').value=$('expNote').value='';live();render()};
@@ -173,5 +235,14 @@ $('saveWork').onclick=()=>{let name=$('empName').value.trim();if(!name)return al
 function month(){let d=new Date(),z=n=>String(n).padStart(2,'0');$('from').value=d.getFullYear()+'-'+z(d.getMonth()+1)+'-01';$('to').value=today();render()}
 $('thisMonth').onclick=month;$('todayOnly').onclick=()=>{$('from').value=$('to').value=today();render()};$('apply').onclick=render;
 ['saleDate','expDate','workDate'].forEach(id=>$(id).value=today());month();live();
+
+function switchTab(tab,openEntry){
+ document.querySelectorAll('.tabpane').forEach(x=>x.classList.toggle('is-visible',x.dataset.tab===tab));
+ document.querySelectorAll('[data-go]').forEach(x=>x.classList.toggle('active',x.dataset.go===tab));
+ if(openEntry){let target=document.getElementById(openEntry);if(target)target.open=true}
+ window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.go)));
+switchTab('home');
 </script>
 </body></html>

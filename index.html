@@ -100,11 +100,54 @@ body{background:#f5f7fa;color:#142c43}
 .homeactions button,.filters .btn{color:#0b3155;background:#eaf1f7;border-color:#d7e3ed}
 .bottomnav button.active{background:#eaf1f7;color:#0b3155}
 .eyebrow{color:#ae853f}
+
+/* AN Coffee · Sổ thu chi dạng danh sách gọn, không cuộn ngang */
+.ledgerpane{overflow:hidden}.ledgerpane .rowtitle{align-items:center}.ledger-count{font-size:11px;font-weight:750;color:#536476;background:#eef3f8;padding:6px 9px;border-radius:99px;white-space:nowrap}
+.ledger-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px 0}.ledger-summary>div{min-width:0;padding:10px 8px;border-radius:11px;background:#f2f5f9;border:1px solid #e7edf4}.ledger-summary small{display:block;font-size:10px;color:#617185;line-height:1.35;min-height:27px}.ledger-summary b{display:block;font-size:clamp(11px,3.2vw,15px);color:#102f50;white-space:nowrap;letter-spacing:-.5px}
+.ledger-toolbar{display:flex;gap:8px;flex-direction:column;margin:11px 0}.ledger-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.ledger-filters button{min-height:37px;border:1px solid #dce5ed;background:#fff;color:#536476;border-radius:9px;font-size:12px;font-weight:750}.ledger-filters button.selected{background:#12365b;color:#fff;border-color:#12365b}.ledger-toolbar input{width:100%;min-width:0;min-height:41px;font-size:16px;border-radius:10px;border:1px solid #dce5ed;padding:8px 12px;background:#fff}
+.ledger-list{display:flex;flex-direction:column;gap:5px}.ledger-item{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #edf0f4;min-width:0}.ledger-date{border-radius:8px;background:#f1f5fa;text-align:center;padding:6px 2px;color:#193b60}.ledger-date b{font-size:15px;display:block;line-height:17px}.ledger-date small{display:block;font-size:9px;white-space:nowrap}.ledger-main{min-width:0}.ledger-name{display:flex;align-items:center;gap:5px;min-width:0}.ledger-name strong{font-size:12px;line-height:1.35;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}.ledger-tag{flex:none;font-size:9px;font-weight:850;border-radius:5px;padding:3px 4px;background:#eef2f7;color:#53677e}.ledger-tag.sales{color:#197250;background:#eaf8f0}.ledger-tag.expenses{color:#a45a2a;background:#fff3e8}.ledger-tag.works{color:#395b9c;background:#edf3ff}.ledger-amount{font-size:12px;white-space:nowrap;text-align:right;letter-spacing:-.35px}.ledger-amount.positive{color:#167750}.ledger-amount.negative{color:#b46b36}.ledger-actions{display:flex;gap:5px;margin-top:6px}.ledger-actions button{font-size:11px;font-weight:700;color:#315e85;background:#f2f6fa;border:1px solid #e4eaf1;padding:4px 8px;min-height:27px;border-radius:6px}.ledger-actions button.danger{color:#a55b58;background:#fff8f7}.ledger-empty{text-align:center;padding:28px 10px;color:#738093;font-size:13px}
+@media(max-width:365px){.ledger-item{grid-template-columns:34px minmax(0,1fr) auto;gap:6px}.ledger-amount{font-size:11px}.ledger-name strong{font-size:11px}.ledger-summary>div{padding:8px 5px}.ledger-summary b{font-size:11px}}
+
+/* AN COFFEE | Professional compact dashboard V5 */
+:root{--navy:#102f4d;--gold:#c9a66a;--pale:#f0f4f8;--border:#e3e9ef;--muted:#64748b}
+body{background:#f2f5f8;color:#18334c;font-feature-settings:"tnum" 1}
+.wrap{max-width:560px;padding:12px 12px 108px}
+.topbar{padding:8px 2px 11px;margin:0 0 7px;border-bottom:1px solid var(--border)}
+.apple{width:43px;height:43px;border-radius:12px;box-shadow:0 2px 9px #0c294126}
+.brand{font-size:20px;letter-spacing:.7px;font-weight:850}
+.tagline{letter-spacing:1.1px;font-size:9px;color:#947648}
+.status{font-size:10px;padding:7px 9px;white-space:nowrap}
+.card{padding:13px;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 10px #193a5a08;margin-bottom:9px}
+.rowtitle{margin-bottom:9px}.rowtitle h1,.rowtitle h2{font-size:17px;margin-top:3px}
+.eyebrow{font-size:9px;letter-spacing:1.2px}.badge{font-size:10px;padding:6px 8px}
+.quick{gap:6px;margin-bottom:8px}.quick button{height:35px;font-size:12px}
+.filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 58px;gap:6px;margin:0 0 10px}
+.filters label{font-size:10px}.filters input{height:36px;font-size:13px!important;padding:3px 5px}.filters .btn{grid-column:auto;height:36px;min-height:36px;font-size:12px;padding:0 5px}
+.metrics{gap:7px}.metric{min-height:74px;padding:10px 11px;border-radius:11px}.metric small{font-size:9px;letter-spacing:.3px}.metric b{font-size:clamp(15px,4.4vw,21px);margin-top:7px;letter-spacing:-.55px}
+.metric.primary{background:linear-gradient(130deg,#0c2e4f,#1c507b)}.metric.profit{background:#f7f0e5;border-color:#f0e5d5}
+.costs{gap:6px;margin-top:8px}.costs>div{padding:8px 9px;border-radius:9px;background:#fff}.costs small{font-size:10px}.costs strong{font-size:13px;margin-top:4px}
+.homeactions{margin-top:10px;gap:6px}.homeactions button{min-height:55px;padding:6px 2px;font-size:10px;border-radius:9px}.homeactions span{font-size:19px;margin-bottom:2px}
+.homeledger{height:37px;margin-top:7px;font-size:11px;border-radius:9px}
+.bottomnav{box-shadow:0 -2px 14px #0b2d4a13;border-top-color:#e1e7ed}
+.bottomnav button{min-height:46px;font-size:10px}.bottomnav button span{font-size:20px}
+.entry{margin:7px 0;border-radius:10px}.entry summary{min-height:58px;padding:9px}.entryicon{width:34px;height:34px;font-size:20px}.entry summary b{font-size:13px}.entry summary small{font-size:10px}
+.entrybody{padding:10px}.entrybody label{font-size:11px}.entrybody input,.entrybody select{min-height:42px;font-size:16px!important}
+.ledger-summary{gap:5px;margin:9px 0}.ledger-summary>div{padding:8px 6px;border-radius:9px}.ledger-summary small{font-size:9px;min-height:24px}.ledger-summary b{font-size:clamp(11px,3.3vw,15px);overflow:hidden;text-overflow:ellipsis}
+.ledger-toolbar{gap:6px;margin:8px 0}.ledger-filters button{min-height:34px}.ledger-toolbar input{min-height:37px}
+.ledger-item{grid-template-columns:36px minmax(0,1fr) auto;gap:7px;padding:7px 0}.ledger-date{padding:4px 1px}.ledger-date b{font-size:14px}.ledger-name strong{font-size:12px}.ledger-actions{margin-top:4px}.ledger-actions button{min-height:28px;padding:4px 8px}
+.reportsummary{gap:6px}.reportsummary>div{padding:9px}.reportsummary b{font-size:16px}
+.chartsub{font-size:10px}.barrow{grid-template-columns:83px minmax(0,1fr) 40px;gap:6px;font-size:10px}
+.report.card{padding:12px}.report summary{font-size:13px}
+.editbox{border-radius:14px}.editactions button{min-height:42px}
+#backupButton{border:1px solid #d8e1e9;background:white;color:#183b5c;border-radius:9px;padding:7px 9px;font-size:11px;font-weight:750;min-height:33px}
+.header-right{display:flex;align-items:center;gap:5px}
+@media(max-width:380px){.wrap{padding:9px 9px 102px}.card{padding:11px}.brand{font-size:18px}.status{display:none}.metric{padding:9px 8px}.ledger-summary>div{padding:7px 4px}.filters{grid-template-columns:1fr 1fr 51px}}
+@media(min-width:700px){.wrap{max-width:560px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="topbar"><div class="brandmark"><span class="apple"><img src="apple-touch-icon.png" alt="AN" style="width:100%;height:100%;object-fit:cover;border-radius:12px"></span><div><div class="brand">AN COFFEE</div><div class="tagline">QUẢN LÝ KINH DOANH</div></div></div><span class="status">● Quản lý</span></header>
+<header class="topbar"><div class="brandmark"><span class="apple"><img src="apple-touch-icon.png" alt="AN" style="width:100%;height:100%;object-fit:cover;border-radius:12px"></span><div><div class="brand">AN COFFEE</div><div class="tagline">QUẢN LÝ KINH DOANH</div></div></div><div class="header-right"><button id="backupButton" type="button" title="Xuất bản sao dữ liệu">⇩ Sao lưu</button><span class="status">● Quản lý</span></div></header>
 <section class="overview card tabpane is-visible" data-tab="home"><div class="rowtitle"><div><div class="eyebrow">TỔNG QUAN</div><h1>Hoạt động kinh doanh</h1></div><span class="badge">Báo cáo</span></div>
 <div class="quick"><button id="todayOnly">Hôm nay</button><button id="thisMonth">Tháng này</button></div>
 <div class="filters"><label>Từ ngày<input id="from" type="date"></label><label>Đến ngày<input id="to" type="date"></label><button class="btn" id="apply">Xem</button></div>
@@ -114,7 +157,7 @@ body{background:#f5f7fa;color:#142c43}
 <details class="entry" id="saleEntry"><summary><span class="entryicon green">＋</span><span><b>Thêm doanh thu</b><small>Tiền mặt · Chuyển khoản · Thu khác</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="grid3"><label>Ngày<input id="saleDate" type="date"></label><label>Tiền mặt<input id="cash" class="money" inputmode="numeric" placeholder="0"></label><label>Chuyển khoản<input id="bank" class="money" inputmode="numeric" placeholder="0"></label></div><div class="grid2"><label>Thu khác<input id="other" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="saleNote" placeholder="Ghi chú"></label></div><div class="total"><span>Tổng thu</span><strong id="saleTotal">0đ</strong></div><button class="btn save" id="saveSale">Lưu doanh thu</button></div></details>
 <details class="entry" id="expenseEntry"><summary><span class="entryicon amber">−</span><span><b>Thêm khoản chi</b><small>Nguyên liệu · Điện nước · Chi khác</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="grid3"><label>Ngày<input id="expDate" type="date"></label><label>Số tiền<input id="expAmount" class="money" inputmode="numeric" placeholder="0"></label><label>Loại chi<select id="expCat"><option>Nguyên vật liệu</option><option>Điện / nước / gas</option><option>Bao bì / cốc / túi</option><option>Vận chuyển</option><option>Thuê mặt bằng</option><option>Chi khác</option></select></label></div><label>Ghi chú<input id="expNote" placeholder="Nội dung chi"></label><div class="total"><span>Khoản chi</span><strong id="expPreview">0đ</strong></div><button class="btn save" id="saveExpense">Lưu khoản chi</button></div></details>
 <details class="entry" id="workEntry"><summary><span class="entryicon blue">◷</span><span><b>Chấm công nhân viên</b><small>Giờ làm · Tăng ca · Thưởng</small></span><span class="chevron">⌄</span></summary><div class="entrybody"><div class="att1"><label>Ngày<input id="workDate" type="date"></label><label>Nhân viên<input id="empName" list="empNames" placeholder="Tên"><datalist id="empNames"></datalist></label><label>Giờ làm<input id="hours" type="number" inputmode="decimal" step=".25" placeholder="0"></label><label>Tăng ca<input id="otHours" type="number" inputmode="decimal" step=".25" placeholder="0"></label></div><div class="att2"><label>Thưởng<input id="bonus" class="money" inputmode="numeric" placeholder="0"></label><label>Ghi chú<input id="workNote" placeholder="Ghi chú"></label><div class="pay"><small>Công ngày</small><strong id="dayPay">0đ</strong></div><button class="btn" id="saveWork">Lưu công</button></div><div class="formula" id="formula">Giờ làm × 18.000đ + tăng ca × 21.000đ + thưởng</div></div></details></section>
-<section class="card tabpane" data-tab="ledger"><div class="rowtitle"><div><div class="eyebrow">TRA CỨU & CHỈNH SỬA</div><h2>Sổ thu chi</h2></div></div><div class="table"><table><thead><tr><th>Ngày</th><th>Nội dung</th><th>Thu</th><th>Chi</th><th>Thao tác</th></tr></thead><tbody id="ledgerRows"></tbody></table></div></section>
+<section class="card tabpane ledgerpane" data-tab="ledger"><div class="rowtitle"><div><div class="eyebrow">GIAO DỊCH TRONG KỲ ĐÃ CHỌN</div><h2>Sổ thu chi</h2></div><span class="ledger-count" id="ledgerCount">0 mục</span></div><div class="ledger-summary"><div><small>Tổng thu</small><b id="ledgerIn">0đ</b></div><div><small>Tổng chi (gồm công)</small><b id="ledgerOut">0đ</b></div><div><small>Chênh lệch</small><b id="ledgerNet">0đ</b></div></div><div class="ledger-toolbar"><div class="ledger-filters" aria-label="Lọc giao dịch"><button type="button" class="selected" data-ledger-filter="all">Tất cả</button><button type="button" data-ledger-filter="sales">Thu</button><button type="button" data-ledger-filter="expenses">Chi</button><button type="button" data-ledger-filter="works">Công</button></div><input id="ledgerSearch" type="search" placeholder="⌕ Tìm nội dung, nhân viên..." aria-label="Tìm giao dịch"></div><div id="ledgerRows" class="ledger-list" aria-live="polite"></div></section>
 <section class="card analytics tabpane" data-tab="reports"><div class="eyebrow">PHÂN TÍCH KINH DOANH</div><h2 style="margin-bottom:12px">Doanh thu & chi phí</h2><div class="reportsummary"><div><small>Tổng thu</small><b id="anRevenue">0đ</b></div><div><small>Tổng chi (gồm lương)</small><b id="anExpense">0đ</b></div></div><div class="charthead"><h2>Biến động từng ngày</h2></div><div class="chartsub">Đường xanh: doanh thu · Đường cam: chi phí (gồm lương)</div><div id="trendChart" class="trendbox"></div><div id="trendInsight" class="insight"></div><h2 style="font-size:16px;margin:22px 0 4px">Cơ cấu nguồn thu</h2><div class="chartsub">Tỷ trọng trên tổng doanh thu</div><div id="incomeMix"></div><h2 style="font-size:16px;margin:22px 0 4px">Phân bổ chi phí</h2><div class="chartsub">Tỷ trọng trên tổng chi, bao gồm tiền công nhân viên</div><div id="expenseMix"></div><div class="mini">Số liệu được tính từ các khoản đã nhập trong khoảng ngày đang chọn ở Tổng quan. Ngày chưa ghi thu được tính là 0đ.</div></section>
 <details class="report card tabpane" data-tab="reports"><summary>📋 Chi tiết chi phí <span>⌄</span></summary><div class="total"><span>Tổng chi phí</span><strong id="expenseTotal">0đ</strong></div><div class="table"><table><thead><tr><th>Ngày</th><th>Loại</th><th>Ghi chú</th><th>Số tiền</th><th>Thao tác</th></tr></thead><tbody id="expenseRows"></tbody></table></div></details>
 <details class="report card tabpane" data-tab="reports"><summary>👥 Công nhân viên <span>⌄</span></summary><div class="summary"><div class="total"><span>Tổng giờ</span><strong id="staffHours">0h</strong></div><div class="total"><span>Tổng công</span><strong id="staffTotal">0đ</strong></div></div><div class="table"><table><thead><tr><th>Ngày</th><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th>Công ngày</th><th>Thao tác</th></tr></thead><tbody id="workRows"></tbody></table></div></details>
@@ -185,11 +228,24 @@ function render(){
  let groups={};works.forEach(w=>{let e=db.employees.find(x=>x.id===w.empId);if(!e)return;let g=groups[e.id]||(groups[e.id]={name:e.name,h:0,ot:0,b:0,total:0});g.h+=+w.hours||0;g.ot+=+w.ot||0;g.b+=+w.bonus||0;g.total+=workPay(w)});
  $('payRows').innerHTML=Object.values(groups).map(g=>`<tr><td>${esc(g.name)}</td><td>${g.h}</td><td>${g.ot}</td><td>${money(g.b)}</td><td class="right">${money(g.total)}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có bảng lương</td></tr>';
   let ledger=[...sales.map(x=>({id:x.id,type:'sales',date:x.date,text:'Doanh thu'+(x.note?' · '+x.note:''),inc:x.cash+x.bank+x.other,out:0})),...ex.map(x=>({id:x.id,type:'expenses',date:x.date,text:x.cat+(x.note?' · '+x.note:''),inc:0,out:x.amount})),...works.map(x=>({id:x.id,type:'works',date:x.date,text:'Công nhân viên · '+(db.employees.find(e=>e.id===x.empId)?.name||''),inc:0,out:workPay(x)}))].sort((a,b)=>b.date.localeCompare(a.date));
-  $('ledgerRows').innerHTML=ledger.map(x=>`<tr><td>${x.date}</td><td>${esc(x.text)}</td><td class="right">${x.inc?money(x.inc):'—'}</td><td class="right">${x.out?money(x.out):'—'}</td><td><button onclick="editEntry('${x.type}','${x.id}')">Sửa</button> <button onclick="deleteEntry('${x.type}','${x.id}')">Xóa</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có dữ liệu</td></tr>';
+  renderLedger(ledger);
  document.querySelectorAll('.table table').forEach(table=>{const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());table.querySelectorAll('tbody tr').forEach(row=>[...row.children].forEach((cell,i)=>{if(cell.tagName==='TD'&&!cell.classList.contains('empty'))cell.setAttribute('data-label',labels[i]||'')}))});
  renderAnalytics(sales,ex,works);
  $('empNames').innerHTML=db.employees.map(e=>`<option value="${esc(e.name)}">`).join('');
 }
+let ledgerFilter='all', ledgerCache=[];
+function renderLedger(ledger){
+ ledgerCache=ledger;
+ const query=($('ledgerSearch')?.value||'').trim().toLocaleLowerCase('vi-VN');
+ const filtered=ledger.filter(x=>(ledgerFilter==='all'||x.type===ledgerFilter)&&(!query||(x.text+' '+x.date).toLocaleLowerCase('vi-VN').includes(query)));
+ const totalIn=filtered.reduce((n,x)=>n+x.inc,0),totalOut=filtered.reduce((n,x)=>n+x.out,0);
+ $('ledgerIn').textContent=money(totalIn);$('ledgerOut').textContent=money(totalOut);$('ledgerNet').textContent=money(totalIn-totalOut);
+ $('ledgerCount').textContent=filtered.length+' mục';
+ const kind={sales:'THU',expenses:'CHI',works:'CÔNG'};
+ $('ledgerRows').innerHTML=filtered.map(x=>{let d=x.date.split('-');return `<article class="ledger-item"><div class="ledger-date"><b>${d[2]||''}</b><small>${d[1]||''}/${d[0]||''}</small></div><div class="ledger-main"><div class="ledger-name"><span class="ledger-tag ${x.type}">${kind[x.type]}</span><strong>${esc(x.text)}</strong></div><div class="ledger-actions"><button type="button" onclick="editEntry('${x.type}','${x.id}')">✎ Sửa</button><button type="button" class="danger" onclick="deleteEntry('${x.type}','${x.id}')">Xóa</button></div></div><b class="ledger-amount ${x.inc?'positive':'negative'}">${x.inc?'+':'−'}${money(x.inc||x.out)}</b></article>`}).join('')||'<div class="ledger-empty">Không có giao dịch phù hợp</div>';
+}
+document.querySelectorAll('[data-ledger-filter]').forEach(b=>b.addEventListener('click',()=>{ledgerFilter=b.dataset.ledgerFilter;document.querySelectorAll('[data-ledger-filter]').forEach(v=>v.classList.toggle('selected',v===b));renderLedger(ledgerCache)}));
+$('ledgerSearch').addEventListener('input',()=>renderLedger(ledgerCache));
 function deleteEntry(type,id){
  if(!['sales','expenses','works'].includes(type))return;
  if(!confirm('Bạn chắc chắn muốn xóa mục này?'))return;
@@ -255,5 +311,14 @@ function switchTab(tab,openEntry){
 }
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.go)));
 switchTab('home');
+document.getElementById('backupButton').addEventListener('click',()=>{
+ try{
+  const payload={format:'AN Coffee backup',version:1,exportedAt:new Date().toISOString(),storageKey:'taoCoffeeCleanV1',data:db};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='AN-Coffee-sao-luu-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+ }catch(e){alert('Không thể sao lưu: '+e.message)}
+});
 </script>
 </body></html>

@@ -27,7 +27,8 @@ input[type=date]{font-size:9px;padding:2px}
 .table{overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:8px}table{border-collapse:collapse;width:100%;min-width:600px;font-size:11px}th,td{padding:8px;border-bottom:1px solid #edf0eb;text-align:left}th{background:#fafbf9;font-size:9px}.right{text-align:right}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:6px}.empty{color:#929892;text-align:center;padding:16px}
 @media(max-width:600px){.wrap{padding:10px}.brand{font-size:22px}.card{padding:10px}.metrics{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.filters .btn{grid-column:1/-1}.section{padding:9px}.grid3{gap:4px}.att1{gap:4px}.att2{gap:4px}.btn{font-size:11px;padding:0 8px}}
-</style>
+ .editoverlay[hidden]{display:none!important}.editoverlay{position:fixed;inset:0;background:#0008;z-index:100;display:flex;align-items:center;justify-content:center;padding:15px}.editbox{background:#fff;border-radius:18px;padding:18px;width:min(100%,440px);max-height:90vh;overflow:auto}.editfields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.editfield{font-size:12px}.editfield input,.editfield select{display:block;margin-top:5px;font-size:15px;height:42px}.editactions{display:flex;gap:8px}.editactions button{flex:1}.cancel{background:#e9eee6}.table button{border:1px solid #c9dfb4;background:#f2fae9;border-radius:8px;padding:7px 9px;font-weight:800;white-space:nowrap}
+ </style>
 </head>
 <body>
 <div class="wrap">
@@ -72,9 +73,10 @@ input[type=date]{font-size:9px;padding:2px}
 
 <section id="payroll" class="page"><div class="card"><div class="title">Bảng lương</div><div class="sub">Tổng hợp theo khoảng thời gian đang xem.</div><div class="table"><table><thead><tr><th>Nhân viên</th><th>Giờ</th><th>TC</th><th>Thưởng</th><th class="right">Tổng lương</th></tr></thead><tbody id="payRows"></tbody></table></div></div></section>
 
-<section id="ledger" class="page"><div class="card"><div class="title">Sổ thu chi</div><div class="table"><table><thead><tr><th>Ngày</th><th>Nội dung</th><th class="right">Thu</th><th class="right">Chi</th></tr></thead><tbody id="ledgerRows"></tbody></table></div></div></section>
+<section id="ledger" class="page"><div class="card"><div class="title">Sổ thu chi</div><div class="table"><table><thead><tr><th>Ngày</th><th>Nội dung</th><th class="right">Thu</th><th class="right">Chi</th><th>Thao tác</th></tr></thead><tbody id="ledgerRows"></tbody></table></div></div></section>
 </div>
 
+<div id="editOverlay" class="editoverlay" hidden><div class="editbox" role="dialog" aria-modal="true" aria-labelledby="editTitle"><div class="title" id="editTitle">Chỉnh sửa</div><div id="editFields" class="editfields"></div><div class="editactions"><button class="btn cancel" onclick="closeEdit()">Hủy</button><button class="btn" onclick="saveEdit()">Lưu thay đổi</button></div></div></div>
 <script>
 const $=id=>document.getElementById(id);
 const today=()=>{let d=new Date(),z=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())};
@@ -107,15 +109,62 @@ function render(){
  $('mRevenue').textContent=money(rev);$('mCash').textContent=money(cash);$('mBank').textContent=money(bank);$('mProfit').textContent=money(rev-exp-staff);$('mMat').textContent=money(mat);$('mStaff').textContent=money(staff);$('mUtil').textContent=money(util);$('mOther').textContent=money(oth);
  let pct=v=>rev?((v/rev*100).toFixed(1).replace('.0','')+'%'):'0%';$('pMat').textContent=pct(mat);$('pStaff').textContent=pct(staff);$('pUtil').textContent=pct(util);$('pOther').textContent=pct(oth);
  $('expenseTotal').textContent=money(exp);$('staffHours').textContent=(works.reduce((a,x)=>a+(+x.hours||0)+(+x.ot||0),0))+'h';$('staffTotal').textContent=money(staff);
- $('expenseRows').innerHTML=ex.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${x.date}</td><td>${esc(x.cat)}</td><td>${esc(x.note)||'—'}</td><td class="right">${money(x.amount)}</td><td><button onclick="delExp('${x.id}')">Xóa</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có chi phí</td></tr>';
- $('workRows').innerHTML=works.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>{let e=db.employees.find(y=>y.id===x.empId);return `<tr><td>${x.date}</td><td>${esc(e?.name||'—')}</td><td>${x.hours}</td><td>${x.ot}</td><td>${money(x.bonus)}</td><td class="right">${money(workPay(x))}</td><td><button onclick="delWork('${x.id}')">Xóa</button></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">Chưa có công</td></tr>';
+ $('expenseRows').innerHTML=ex.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${x.date}</td><td>${esc(x.cat)}</td><td>${esc(x.note)||'—'}</td><td class="right">${money(x.amount)}</td><td><button onclick="editEntry('expenses','${x.id}')">Sửa</button> <button onclick="deleteEntry('expenses','${x.id}')">Xóa</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có chi phí</td></tr>';
+ $('workRows').innerHTML=works.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>{let e=db.employees.find(y=>y.id===x.empId);return `<tr><td>${x.date}</td><td>${esc(e?.name||'—')}</td><td>${x.hours}</td><td>${x.ot}</td><td>${money(x.bonus)}</td><td class="right">${money(workPay(x))}</td><td><button onclick="editEntry('works','${x.id}')">Sửa</button> <button onclick="deleteEntry('works','${x.id}')">Xóa</button></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">Chưa có công</td></tr>';
  let groups={};works.forEach(w=>{let e=db.employees.find(x=>x.id===w.empId);if(!e)return;let g=groups[e.id]||(groups[e.id]={name:e.name,h:0,ot:0,b:0,total:0});g.h+=+w.hours||0;g.ot+=+w.ot||0;g.b+=+w.bonus||0;g.total+=workPay(w)});
  $('payRows').innerHTML=Object.values(groups).map(g=>`<tr><td>${esc(g.name)}</td><td>${g.h}</td><td>${g.ot}</td><td>${money(g.b)}</td><td class="right">${money(g.total)}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có bảng lương</td></tr>';
- let ledger=[...sales.map(x=>({date:x.date,text:'Doanh thu',inc:x.cash+x.bank+x.other,out:0})),...ex.map(x=>({date:x.date,text:x.cat,inc:0,out:x.amount})),...works.map(x=>({date:x.date,text:'Công nhân viên',inc:0,out:workPay(x)}))].sort((a,b)=>b.date.localeCompare(a.date));
- $('ledgerRows').innerHTML=ledger.map(x=>`<tr><td>${x.date}</td><td>${esc(x.text)}</td><td class="right">${x.inc?money(x.inc):'—'}</td><td class="right">${x.out?money(x.out):'—'}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Chưa có dữ liệu</td></tr>';
+  let ledger=[...sales.map(x=>({id:x.id,type:'sales',date:x.date,text:'Doanh thu'+(x.note?' · '+x.note:''),inc:x.cash+x.bank+x.other,out:0})),...ex.map(x=>({id:x.id,type:'expenses',date:x.date,text:x.cat+(x.note?' · '+x.note:''),inc:0,out:x.amount})),...works.map(x=>({id:x.id,type:'works',date:x.date,text:'Công nhân viên · '+(db.employees.find(e=>e.id===x.empId)?.name||''),inc:0,out:workPay(x)}))].sort((a,b)=>b.date.localeCompare(a.date));
+  $('ledgerRows').innerHTML=ledger.map(x=>`<tr><td>${x.date}</td><td>${esc(x.text)}</td><td class="right">${x.inc?money(x.inc):'—'}</td><td class="right">${x.out?money(x.out):'—'}</td><td><button onclick="editEntry('${x.type}','${x.id}')">Sửa</button> <button onclick="deleteEntry('${x.type}','${x.id}')">Xóa</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Chưa có dữ liệu</td></tr>';
  $('empNames').innerHTML=db.employees.map(e=>`<option value="${esc(e.name)}">`).join('');
 }
-function delExp(id){db.expenses=db.expenses.filter(x=>x.id!==id);save();render()}function delWork(id){db.works=db.works.filter(x=>x.id!==id);save();render()}
+function deleteEntry(type,id){
+ if(!['sales','expenses','works'].includes(type))return;
+ if(!confirm('Bạn chắc chắn muốn xóa mục này?'))return;
+ db[type]=db[type].filter(x=>x.id!==id);save();render();
+}
+function delExp(id){deleteEntry('expenses',id)}
+function delWork(id){deleteEntry('works',id)}
+let editing=null;
+function editEntry(type,id){
+ if(!['sales','expenses','works'].includes(type))return;
+ let item=db[type].find(x=>x.id===id);if(!item)return;
+ editing={type,id};let fields=[];
+ const f=(label,key,value,kind='text')=>`<label class="editfield">${label}<input data-field="${key}" type="${kind}" ${kind==='number'?'min="0" step="0.25"':''} value="${esc(value??'')}"></label>`;
+ fields.push(f('Ngày','date',item.date,'date'));
+ if(type==='sales')fields.push(f('Tiền mặt','cash',item.cash,'number'),f('Chuyển khoản','bank',item.bank,'number'),f('Thu khác','other',item.other,'number'),f('Ghi chú','note',item.note));
+ if(type==='expenses'){
+  fields.push(f('Số tiền','amount',item.amount,'number'));
+  fields.push(`<label class="editfield">Loại chi<select data-field="cat">${['Nguyên vật liệu','Điện / nước / gas','Bao bì / cốc / túi','Vận chuyển','Thuê mặt bằng','Chi khác',item.cat].filter((x,i,a)=>a.indexOf(x)===i).map(x=>`<option ${x===item.cat?'selected':''}>${esc(x)}</option>`).join('')}</select></label>`);
+  fields.push(f('Ghi chú','note',item.note));
+ }
+ if(type==='works'){
+  fields.push(f('Nhân viên','empName',db.employees.find(e=>e.id===item.empId)?.name||''),f('Giờ làm','hours',item.hours,'number'),f('Tăng ca','ot',item.ot,'number'),f('Thưởng','bonus',item.bonus,'number'),f('Ghi chú','note',item.note));
+ }
+ $('editTitle').textContent=type==='sales'?'Sửa doanh thu':type==='expenses'?'Sửa khoản chi':'Sửa chấm công';
+ $('editFields').innerHTML=fields.join('');$('editOverlay').hidden=false;
+}
+function closeEdit(){editing=null;$('editOverlay').hidden=true}
+function saveEdit(){
+ if(!editing)return;
+ const {type,id}=editing,item=db[editing.type].find(x=>x.id===editing.id);
+ if(!item)return closeEdit();
+ let vals={};$('editFields').querySelectorAll('[data-field]').forEach(el=>vals[el.dataset.field]=el.value);
+ if(!vals.date)return alert('Vui lòng chọn ngày.');
+ const nonneg=(key)=>{let v=Number(vals[key]);if(!Number.isFinite(v)||v<0)return null;return v};
+ let keys=type==='sales'?['cash','bank','other']:type==='expenses'?['amount']:['hours','ot','bonus'];
+ for(let key of keys){if(nonneg(key)===null)return alert('Số tiền và số giờ không được âm.');}
+ if(type==='works'){
+  let name=vals.empName.trim();if(!name)return alert('Hãy nhập tên nhân viên.');
+  let emp=employee(name);if(!emp){emp={id:uid(),name,rate:18000,otRate:21000};db.employees.push(emp)}
+  item.empId=emp.id;
+ }
+ item.date=vals.date;
+ for(let key of keys)item[key]=nonneg(key);
+ if(type==='expenses')item.cat=vals.cat;
+ item.note=(vals.note||'').trim();
+ save();closeEdit();render();alert('Đã lưu chỉnh sửa thành công!');
+}
+
 function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');$('navSelect').value=id==='home'?'':id;render()}
 
 $('saveSale').onclick=()=>{let total=number($('cash').value)+number($('bank').value)+number($('other').value);if(!total)return alert('Hãy nhập doanh thu.');db.sales.push({id:uid(),date:$('saleDate').value,cash:number($('cash').value),bank:number($('bank').value),other:number($('other').value),note:$('saleNote').value.trim()});save();['cash','bank','other','saleNote'].forEach(id=>$(id).value='');live();render()};
